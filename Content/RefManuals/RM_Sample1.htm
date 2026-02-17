@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="utf-8" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>INSTALLATION GUIDE</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Installation guide</title>
         <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
         <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
         <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
@@ -114,68 +114,144 @@
                                         </div>
                                     </div>
                                     <div role="main" id="mc-main-content">
-                                        <h1>INSTALLATION GUIDE</h1>
+                                        <h1>Installation guide</h1>
                                         <h3>Table of contents</h3>
                                         <ul>
                                             <li>Introduction</li>
-                                            <li>Important Information</li>
-                                            <li>Continuous Release Overview</li>
+                                            <li>Important information</li>
+                                            <li>Continuous release overview</li>
                                             <li>Prerequisites</li>
                                             <li>Installation</li>
-                                            <li>Running the Installation Script</li>
-                                            <li>Verifying Installation</li>
-                                            <li>Licence Setup</li>
+                                            <li>Running the installation script</li>
+                                            <li>Verifying installation</li>
+                                            <li>Licence setup</li>
                                             <li>Uninstallation</li>
-                                            <li>Testing</li>
                                             <li>Troubleshooting</li>
-                                            <li>Logging Setup</li>
+                                            <li>Logging setup</li>
                                         </ul>
                                         <h3>Introduction</h3>
-                                        <p>This guide outlines the installation process for <strong>RegionModule Setup 1.2.3</strong>. It includes steps for installation, uninstallation, and references to related release notes.</p>
+                                        <p>
+			This guide describes how to install <strong>RegionModule Setup 1.2.3</strong>. 
+			It includes installation, uninstallation, key configuration steps, and references 
+			to the related release notes.
+		</p>
                                         <h3>Important information</h3>
+                                        <p>
+			Review all prerequisites and configuration settings before starting the installation process.
+			Ensure that the environment meets the required platform and licensing conditions.
+		</p>
                                         <h3>Continuous release overview</h3>
-                                        <p>As part of the transition to cloud-based enterprise solutions, this release introduces <strong>Generic ERP Continuous Update</strong>, replacing the legacy <strong>Generic ERP7</strong>. The updated version initially mirrors existing functionality while enabling a seamless move to cloud infrastructure.
-		Updates will continue for the legacy version to maintain compliance with regulations.</p>
+                                        <p>
+			As part of the transition to cloud-based enterprise solutions, this release introduces 
+			<strong>Generic ERP Continuous Update</strong>, replacing the legacy 
+			<strong>Generic ERP2</strong>. The updated version initially mirrors existing functionality 
+			while enabling a smooth transition to cloud infrastructure.
+		</p>
+                                        <p>
+			Updates for the legacy version will continue to ensure regulatory compliance.
+		</p>
                                         <h3>Prerequisites</h3>
                                         <ul>
-                                            <li><strong>Product licence</strong>: The site must have the correct licence for <strong>RegionModule Setup</strong>. This licence differs from the legacy version despite similar functionality.</li>
-                                            <li>To enable the <strong>Invoice listener</strong> feature:
-			<ul><li>Access the <strong>Support portal &gt; Platform services</strong>.</li><li>Enable the <strong>Identity xervice</strong>: Confirm the environment is set to <em>Shared Cloud</em> and the application is <strong>RegionModule setup</strong>.</li><li>Enable the <strong>Extension service</strong>: Ensure the environment matches the <em>Shared Cloud</em> setting.</li><li>Enable the <strong>Flow kit</strong> value for Sample listener: Request activation via the <strong>Industry flow request</strong> section. Confirm the extension kit is enabled and select <strong>Invoice listener</strong> in the flow options.</li></ul></li>
+                                            <li><strong>Product licence</strong>: The environment must have the correct licence for 
+				<strong>RegionModule Setup</strong>. This licence differs from the legacy version 
+				despite similarities in functionality.
+			</li>
+                                            <li>
+				To enable the <strong>Invoice listener</strong> feature:
+				<ul><li>In the <strong>Support portal</strong>, go to <strong>Platform services</strong>.</li><li>
+						Enable the <strong>Identity service</strong>: 
+						Confirm the environment is set to <em>Shared Cloud</em> and the application 
+						is <strong>RegionModule Setup</strong>.
+					</li><li>
+						Enable the <strong>Extension service</strong>: 
+						Ensure the environment matches the <em>Shared Cloud</em> configuration.
+					</li><li>
+						Enable the <strong>Flow kit</strong> value for the Sample listener:  
+						Request activation via the <strong>Industry flow request</strong> section.  
+						Confirm that Extension Kit is enabled and select <strong>Invoice listener</strong>
+						in the available flow options.
+					</li></ul></li>
                                         </ul>
-                                        <p><em><b>Tip</b>: Detailed setup instructions are available in the accompanying document titled InvoiceListenerSetup.docx.</em>
-                                        </p>
+                                        <p><b>Tip:</b> Detailed setup steps are available in the supplementary document 
+		<code>InvoiceListenerSetup.docx</code>.</p>
                                         <h3>Installation</h3>
-                                        <p>This section describes how to install or upgrade <strong>RegionModule setup</strong> and migrate users from on-premises to cloud.
+                                        <p>
+			This section explains how to install or upgrade <strong>RegionModule Setup</strong> 
+			and migrate users from an on-premises deployment to the cloud.
 		</p>
-                                        <p><strong>Note</strong>: Ensure read/write access to the folder defined by the LOG_PATH environment variable for the web server identity.
-		</p>
-                                        <p><strong>Warning</strong>: Confirm the following entry exists in the configuration file:</p><pre xml:space="preserve">
+                                        <p><strong>Note:</strong> Ensure the web server identity has read/write access to the folder 
+		defined by the <code>LOG_PATH</code> environment variable.</p>
+                                        <p><strong>Warning:</strong> Confirm that the following entry exists in the configuration file:</p><pre xml:space="preserve">
 			&lt;sampleCode&gt;
+			...
+			&lt;/sampleCode&gt;
 		</pre>
                                         <h3>Running the installation script</h3>
                                         <ol>
                                             <li value="1">Extract the installation package.</li>
-                                            <li value="2">Open PowerShell as administrator.</li>
+                                            <li value="2">Open PowerShell as an administrator.</li>
                                             <li value="3">Navigate to the extracted folder.</li>
-                                            <li value="4">Run Install.ps1 with parameters:
-			<ul><li>dataSource: Target database.</li><li>assemblyMode: Load method (e.g., Normal, File, Database).</li><li>architecture: Target architecture (default: x64).</li><li>runScript: Run mandatory scripts (required for fresh installs).</li><li>runTaxonomy: Install taxonomy codes.</li><li>runMarketplace: Install template marketplace.</li><li>migrate: Remove legacy system parameters.</li><li>client: Default client (e.g., "Region").</li><li>systemSetup: Default system setup.</li><li>userId: Default user ID (e.g., "SYSTEM").</li><li>h: Display help.</li></ul></li>
-                                            <li value="5">For production environments, run InstallWeb.ps1 with:
-			<ul><li>milestone: Core version (default: 7).</li><li>iisreset: Restart IIS (default: false).</li></ul></li>
+                                            <li value="4">
+				Run <code>Install.ps1</code> with the following parameters:
+				<ul><li><strong>dataSource</strong>: Target database connection.</li><li><strong>assemblyMode</strong>: Load method (for example, Normal, File, Database).</li><li><strong>architecture</strong>: Target architecture (default: x64).</li><li><strong>runScript</strong>: Execute mandatory scripts (required for fresh installations).</li><li><strong>runTaxonomy</strong>: Install taxonomy codes.</li><li><strong>runMarketplace</strong>: Install template marketplace.</li><li><strong>migrate</strong>: Remove legacy system parameters.</li><li><strong>client</strong>: Default client (for example, “Region”).</li><li><strong>systemSetup</strong>: Default system setup value.</li><li><strong>userId</strong>: Default user ID (for example, “SYSTEM”).</li><li><strong>h</strong>: Display help information.</li></ul></li>
+                                            <li value="5">
+				For production environments, run <code>InstallWeb.ps1</code> with:
+				<ul><li><strong>milestone</strong>: Core version (default: 7).</li><li><strong>iisreset</strong>: Restart IIS after installation (default: false).</li></ul></li>
                                         </ol>
                                         <h3>Verifying installation</h3>
                                         <ul>
-                                            <li>Confirm visibility of screens in the menu.</li>
-                                            <li>Check assembly versions in the details section.</li>
-                                            <li>Verify stylesheet files are copied to the folder defined by STYLESHEET_PATH.</li>
-                                            <li>Confirm the handler process runs correctly and logs the correct export directory.</li>
+                                            <li>Check that the relevant screens appear in the application menu.</li>
+                                            <li>Confirm assembly versions in the application’s details section.</li>
+                                            <li>
+				Verify that stylesheet files are copied to the folder defined by 
+				<code>STYLESHEET_PATH</code>.
+			</li>
+                                            <li>
+				Confirm that the handler process runs correctly and logs the correct 
+				export directory.
+			</li>
                                         </ul>
                                         <h3>Licence setup</h3>
                                         <ul>
-                                            <li>Licence files must be installed in both the business server and web server directories.</li>
-                                            <li>Attempting to use punchout features without a licence will result in a warning.</li>
+                                            <li>Install licence files in both the business server and web server directories.</li>
+                                            <li>Using punchout features without a valid licence triggers a warning.</li>
                                         </ul>
-                                        <li style="text-align: left;">Run Uninstall.ps1 in PowerShell as administrator.</li>
-                                        <li><![CDATA[						]]><h3>Troubleshooting</h3><h3>Create local logging group</h3><ol><li value="1"><p>Create a group named Logging.</p></li><li value="2"><p>Add users: ASPNET, IUSR, NETWORK SERVICE, etc.</p></li><li value="3"><p>Assign permissions to the folder defined by LOG_PATH.</p></li></ol><h3>Enable logging</h3><ol><li value="1"><p>Open the Management Console.</p></li><li value="2"><p>Navigate to logging settings.</p></li><li value="3"><p>Enable logging and select method (event log, database, file).</p></li><li value="4"><p>Set priority level (for example, high).</p></li><li value="5"><p>Save configuration.</p></li></ol><p><b>Tip</b>: Restart IIS or the business service after enabling logging.</p></li>
+                                        <h3>Uninstallation</h3>
+                                        <ul>
+                                            <li>Run <code>Uninstall.ps1</code> in PowerShell as an administrator.</li>
+                                        </ul>
+                                        <h3>Troubleshooting</h3>
+                                        <h3>Create local logging group</h3>
+                                        <ol>
+                                            <li value="1">
+                                                <p>Create a group named <strong>Logging</strong>.</p>
+                                            </li>
+                                            <li value="2">
+                                                <p>Add relevant service accounts (for example, ASPNET, IUSR, NETWORK SERVICE).</p>
+                                            </li>
+                                            <li value="3">
+                                                <p>Assign permissions to the folder defined by <code>LOG_PATH</code>.</p>
+                                            </li>
+                                        </ol>
+                                        <h3>Enable logging</h3>
+                                        <ol>
+                                            <li value="1">
+                                                <p>Open the Management Console.</p>
+                                            </li>
+                                            <li value="2">
+                                                <p>Navigate to logging settings.</p>
+                                            </li>
+                                            <li value="3">
+                                                <p>Select the preferred logging method (event log, database, or file).</p>
+                                            </li>
+                                            <li value="4">
+                                                <p>Set the appropriate priority level.</p>
+                                            </li>
+                                            <li value="5">
+                                                <p>Save the configuration.</p>
+                                            </li>
+                                        </ol>
+                                        <p><b>Tip:</b> Restart IIS or the business service after enabling logging.</p>
                                     </div>
                                 </div>
                             </div>

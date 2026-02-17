@@ -116,11 +116,20 @@
                                     <div role="main" id="mc-main-content">
                                         <div style="font-family: Arial, sans-serif; line-height: 1.6; padding: 20px;">
                                             <h1>Release Notes for Inventory intake API</h1>
-                                            <h2 style="color: #2F4F4F;">New Receipt entry API</h2>
+                                            <h2 style="color: #2F4F4F;">New <strong>Inventory intake</strong> API</h2>
                                             <h3 style="color: #2F4F4F;">Benefit</h3>
-                                            <p>You can create receipt records using the Internal Retrieval API.</p>
+                                            <p>
+				You can now create inventory intake records directly through the Inventory intake API, 
+				enabling automated receipt processing and better integration with external procurement 
+				and logistics systems.
+			</p>
                                             <h3 style="color: #2F4F4F;">Overview</h3>
-                                            <p>We have implemented the Internal Retrieval API to support the creation of new receipt records based on order information available in the system.</p>
+                                            <p>
+				The <b>Inventory intake</b> API allows external systems to generate intake records based 
+				on purchase order information stored in the application.  
+				It applies the same defaulting and validation rules as the <b>Intake entry</b> window, 
+				ensuring consistent behaviour between the API and the user interface.
+						</p>
                                             <h3 style="color: #2F4F4F;">Available method</h3>
                                             <table style="border-collapse: collapse; width: 100%;">
                                                 <thead>
@@ -133,13 +142,18 @@
                                                 <tbody>
                                                     <tr>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">POST</td>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">/v1/operations/internalretrieval	</td>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">To create new receipt records based on their order reference IDs.</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;"><i>/v1/acquisition/intake/{referenceId}</i>
+                                                        </td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;">
+							To create new intake records based on an existing <i>Purchase reference ID</i>.
+						</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p>For more information, refer to <a href="APIs_Sample1.htm">Details on Inventory Intake API.</a></p>
+                                        <p>
+			For more information, refer to 
+			<a href="APIs_Sample1.htm">Details on Inventory intake API.</a></p>
                                     </div>
                                 </div>
                             </div>

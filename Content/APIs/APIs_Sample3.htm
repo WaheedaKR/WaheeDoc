@@ -116,36 +116,51 @@
                                     <div role="main" id="mc-main-content">
                                         <div style="font-family: Arial, sans-serif; line-height: 1.6; padding: 20px;">
                                             <h1>Sample entity API</h1>
-                                            <p>The <b>Sample Entity</b> API allows you to create, retrieve, and update entity records using RESTful endpoints. It supports structured JSON payloads and standard HTTP methods to ensure seamless integration with external systems.</p>
+                                            <p>
+				The <b>Sample entity</b> API allows you to create, retrieve, and update entity records 
+				using RESTful endpoints. It supports structured JSON payloads and standard HTTP methods 
+				to ensure seamless integration with external systems.
+			</p>
+                                            <!-- Retrieve -->
                                             <h2 style="color: #2F4F4F;">Retrieve a sample entity</h2>
                                             <h3 style="color: #2F4F4F;">GET /v1/sample-entities/{sampleEntityId}</h3>
-                                            <p>Use this method to retrieve a specific sample entity by its unique identifier. Optional query parameters allow you to filter results based on organisation and date criteria.</p>
+                                            <p>
+				Use this method to retrieve a specific sample entity by its unique identifier. 
+				Optional query parameters allow you to filter results based on organisation and date criteria.
+			</p>
                                             <h4>Parameters</h4>
                                             <ul>
                                                 <li><strong>sampleEntityId</strong> (path, string, required): The unique identifier of the entity to retrieve.</li>
-                                                <li><strong>sampleOrgId</strong> (query, string, optional): The identifier of the organisation associated with the entity.</li>
+                                                <li><strong>sampleOrgId</strong> (query, string, optional): The organisation identifier associated with the entity.</li>
                                                 <li><strong>validFrom</strong> (query, date-time, optional): Filters results to include only entities valid from this date.</li>
                                                 <li><strong>validTo</strong> (query, date-time, optional): Filters results to include only entities valid up to this date.</li>
                                             </ul>
                                             <h4>Responses</h4>
                                             <ul>
                                                 <li><strong>200 OK</strong>: The entity was retrieved successfully.</li>
-                                                <li><strong>400 Bad Request</strong>: The request was invalid or missing required parameters.</li>
-                                                <li><strong>404 Not Found</strong>: No entity was found with the specified identifier.</li>
+                                                <li><strong>400 Bad request</strong>: The request was invalid or missing required parameters.</li>
+                                                <li><strong>404 Not found</strong>: No entity exists with the specified identifier.</li>
                                                 <li><strong>410 Gone</strong>: The entity is no longer available.</li>
                                             </ul>
-                                            <h2 style="color: #2F4F4F;">Update a Sample Entity</h2>
+                                            <!-- Update -->
+                                            <h2 style="color: #2F4F4F;">Update a sample entity</h2>
                                             <h3 style="color: #2F4F4F;">PATCH /v1/sample-entities/{sampleEntityId}</h3>
-                                            <p>This method allows you to update specific fields of an existing sample entity. Only the fields specified in the request body will be updated.</p>
+                                            <p>
+				Use this method to update specific fields of an existing sample entity. 
+				Only the fields included in the request body will be updated.
+			</p>
                                             <h4>Parameters</h4>
                                             <ul>
                                                 <li><strong>sampleEntityId</strong> (path, string, required): The unique identifier of the entity to update.</li>
-                                                <li><strong>sampleOrgId</strong> (query, string, optional): The identifier of the organisation associated with the entity.</li>
-                                                <li><strong>validFrom</strong> (query, date-time, optional): Filters the update to apply only if the entity is valid from this date.</li>
+                                                <li><strong>sampleOrgId</strong> (query, string, optional): The organisation identifier associated with the entity.</li>
+                                                <li><strong>validFrom</strong> (query, date-time, optional): Applies the update only if the entity is valid from this date.</li>
                                             </ul>
                                             <h4>Request body</h4>
                                             <p>Content-Type: <code>application/json-patch+json</code></p>
-                                            <p>The request body must be a valid JSON PATCH array. Each object in the array should include the operation type, the path to the field, and the new value. For example:</p><pre>[
+                                            <p>
+				The request body must be a valid JSON PATCH array. 
+				Each object defines the operation, the field path, and the new value.
+			</p><pre>[
 				{
 				"op": "replace",
 				"path": "/sampleField",
@@ -157,17 +172,23 @@
                                             <ul>
                                                 <li><strong>200 OK</strong>: The entity was updated successfully.</li>
                                                 <li><strong>400 Bad request</strong>: The request was invalid or contained unsupported operations.</li>
-                                                <li><strong>404 Not found</strong>: No entity was found with the specified identifier.</li>
+                                                <li><strong>404 Not found</strong>: No entity exists with the specified identifier.</li>
                                                 <li><strong>410 Gone</strong>: The entity is no longer available.</li>
                                                 <li><strong>422 Unprocessable entity</strong>: The request was syntactically correct but contained semantic errors.</li>
                                             </ul>
+                                            <!-- Create -->
                                             <h2 style="color: #2F4F4F;">Create a sample entity</h2>
                                             <h3 style="color: #2F4F4F;">POST /v1/sample-entities</h3>
-                                            <p>Use this method to create a new sample entity. The request body must include all required fields and follow the expected schema.</p>
+                                            <p>
+				Use this method to create a new sample entity. 
+				The request body must include all required fields and follow the expected schema.
+			</p>
                                             <h4>Request body</h4>
                                             <p>Content-Type: <code>application/json</code></p>
-                                            <p>The request body must be a valid JSON object containing the entity’s attributes. </p>
-                                            <p><b>Note</b>: Nested objects and arrays are supported.</p><pre>{
+                                            <p>
+				The request body must be a valid JSON object containing the entity’s attributes.
+			</p>
+                                            <p><b>Note:</b> Nested objects and arrays are supported.</p><pre>{
 				"sampleFieldA": "value",
 				"sampleFieldB": true,
 				"sampleFieldC": 123,

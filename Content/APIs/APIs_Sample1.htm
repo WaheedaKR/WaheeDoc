@@ -117,41 +117,58 @@
                                         <div style="font-family: Arial, sans-serif; line-height: 1.6; padding: 20px;">
                                             <h1 style="color: #2F4F4F;">Inventory intake API documentation</h1>
                                             <h2 style="color: #2F4F4F;">Endpoint</h2>
-                                            <p><strong>POST</strong> <code style="background-color: #f4f4f4; padding: 2px 4px;">/v1/acquisition/intake/{referenceId}</code></p>
+                                            <p><strong>POST</strong><code style="background-color: #f4f4f4; padding: 2px 4px;">/v1/acquisition/intake/{referenceId}</code>
+                                            </p>
                                             <h2 style="color: #2F4F4F;">Defaulting and validation</h2>
-                                            <p>The <b>Inventory intake</b> API applies the same defaulting and validation logic as the <b>Intake entry</b> screen in the Web interface. This section outlines additional rules and behaviours specific to using the API for the POST method, while still aligned with the interface logic.</p>
+                                            <p>
+				The <b>Inventory intake</b> API applies the same defaulting and validation logic as the 
+				<b>Intake entry</b> screen in the (Name of product) Web interface. The following rules describe behaviour 
+				specific to using the API with the POST method, while remaining consistent with the interface logic.
+			</p>
                                             <h3 style="color: #2F4F4F;">Transaction category</h3>
+                                            <p>The system determines the transaction category based on the following rules:</p>
                                             <ul>
-                                                <li>If only one valid category type exists, the input can omit this value, and the system will apply the default.</li>
-                                                <li>If multiple category types exist:
-					<ul><li>If a valid value is provided, it will be used.</li><li>If no value is provided and <code>CFG_TXN_CATEGORY</code> is active and has a valid value, that value will be used.</li><li>If no value is provided and <code>CFG_TXN_CATEGORY</code> is inactive, an error will be returned.</li></ul></li>
+                                                <li>If only one valid category type exists, the system applies it automatically when the value is omitted.</li>
+                                                <li>If multiple valid category types exist:
+					<ul><li>If a valid category value is provided in the request, the system uses it.</li><li>If no value is provided and the <code>CFG_TXN_CATEGORY</code> parameter is active with a valid value, the system uses that configuration value.</li><li>If no value is provided and the <code>CFG_TXN_CATEGORY</code> parameter is inactive, the system returns an error.</li></ul></li>
                                             </ul>
+                                            <p><b>Tip:</b> If your organisation frequently defaults to the same category, enabling the <code>CFG_TXN_CATEGORY</code> parameter simplifies API integrations by reducing required input.</p>
                                             <h3 style="color: #2F4F4F;">Input payload</h3>
+                                            <p>The API interprets the payload according to the level of detail provided:</p>
                                             <ul>
-                                                <li>If no input payload is provided, a full intake will be assumed.</li>
-                                                <li>For partial intake, the payload must include:
+                                                <li>If the request contains no payload, the system assumes a full intake.</li>
+                                                <li>For a partial intake, the payload must include:
 					<ul><li>Line identifier</li><li>Quantity received</li><li>Agreed unit cost</li></ul></li>
-                                                <li>Only existing lines from the purchase reference can be processed.</li>
+                                                <li>The API processes only the lines that exist in the referenced purchase document.</li>
                                             </ul>
-                                            <h3 style="color: #2F4F4F;">Delivery Date</h3>
+                                            <p><b>Note:</b> Partial intake requests must not introduce any new lines. All referenced lines must match exactly with the originating purchase document.</p>
+                                            <h3 style="color: #2F4F4F;">Delivery date</h3>
+                                            <p>The delivery date is validated and defaulted according to the following configuration settings:</p>
                                             <ul>
-                                                <li>If <code>CFG_DEFAULT_DELIV_DATE</code> is "ON", the delivery date is auto-populated unless specified.</li>
-                                                <li>If "OFF", the delivery date must be explicitly provided.</li>
-                                                <li>If missing or invalid, an error will be returned.</li>
+                                                <li>If the <code>CFG_DEFAULT_DELIV_DATE</code> parameter is set to <b>ON</b>, the delivery date is auto-populated unless provided in the request.</li>
+                                                <li>If the configuration is <b>OFF</b>, the delivery date must be explicitly provided.</li>
+                                                <li>If the delivery date is missing or invalid, the system returns an error.</li>
                                             </ul>
-                                            <h3 style="color: #2F4F4F;">Over-Receipt Rules</h3>
+                                            <p><b>Tip:</b> When integrating external logistics systems, ensure all timestamps are converted to the organisation’s expected date format to avoid validation issues.</p>
+                                            <h3 style="color: #2F4F4F;">Over-receipt rules</h3>
+                                            <p>The system applies the following rules when determining whether over&#8209;receipt is allowed:</p>
                                             <ul>
-                                                <li>For quantity-based and stock-tracked items, over-receipt is not permitted.</li>
-                                                <li>For non-quantity-based items:
-					<ul><li>If <code>CFG_ALLOW_OVER_RECEIPT</code> is active: over-receipt is blocked.</li><li>If inactive: over-receipt is allowed.</li></ul></li>
+                                                <li>Over&#8209;receipt is never permitted for quantity&#8209;based or stock&#8209;tracked items.</li>
+                                                <li>For non&#8209;quantity&#8209;based items:
+					<ul><li>If <code>CFG_ALLOW_OVER_RECEIPT</code> is active, over&#8209;receipt is blocked.</li><li>If the configuration is inactive, over&#8209;receipt is permitted.</li></ul></li>
                                             </ul>
-                                            <h3 style="color: #2F4F4F;">Inventory Tracking Fields</h3>
+                                            <p><b>Note:</b> Over&#8209;receipt checks are applied at line level. If multiple lines exist, each line is evaluated independently.</p>
+                                            <h3 style="color: #2F4F4F;">Inventory tracking fields</h3>
+                                            <p>The following fields apply to stock&#8209;tracked items only:</p>
                                             <ul>
-                                                <li>Applicable only to stock-tracked items: <code>storageZone</code>, <code>locationCode</code>, <code>batchCode</code>, <code>serialIdentifier</code></li>
-                                                <li>For non-stock items.<br /><b>Note</b>: These fields are ignored.</li>
-                                                <li>For stock-tracked items:
-					<ul><li><code>storageZone</code> and <code>locationCode</code> are mandatory.</li><li><code>serialIdentifier</code> must be unique per item and limited to 20 characters.</li><li>Serial identifiers cannot be reused within the same intake record.</li></ul></li>
-                                                <li>For items with batch and expiry tracking enabled, date fields can be included in batch data.</li>
+                                                <li><code>storageZone</code>, <code>locationCode</code>, <code>batchCode</code>, <code>serialIdentifier</code></li>
+                                            </ul>
+                                            <p>Additional rules for inventory tracking fields:</p>
+                                            <ul>
+                                                <li>For non&#8209;stock items, all inventory tracking fields are ignored.</li>
+                                                <li>For stock&#8209;tracked items:
+					<ul><li><code>storageZone</code> and <code>locationCode</code> are mandatory.</li><li><code>serialIdentifier</code> must be unique, limited to 20 characters, and cannot be reused within the same intake record.</li></ul></li>
+                                                <li>For items with batch and expiry tracking enabled, relevant date fields may be included in the batch information.</li>
                                             </ul>
                                             <h2 style="color: #2F4F4F;">Parameters</h2>
                                             <table style="border-collapse: collapse; width: 100%;">
@@ -166,35 +183,40 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">referenceId</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;"><i>referenceId</i>
+                                                        </td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">path</td>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">The purchase reference ID. Must be in a valid state.</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;">The purchase reference ID. The reference must be in a valid state.</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">Yes</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">long</td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">intakePayload</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;"><i>intakePayload</i>
+                                                        </td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">body</td>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">The intake record to be created, formatted as JSON.</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;">The intake record to create, formatted as JSON.</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">Yes</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">object</td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">organisationId</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;"><i>organisationId</i>
+                                                        </td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">query</td>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">Identifier for the organisation initiating the request.</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;">Identifier for the organisation submitting the request.</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">No</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">string</td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">transactionCategory</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;"><i>transactionCategory</i>
+                                                        </td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">query</td>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">Category type for the transaction.</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;">The transaction category to apply.</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">Conditional</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">string</td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border: 1px solid #ccc; padding: 8px;">accessToken</td>
+                                                        <td style="border: 1px solid #ccc; padding: 8px;"><i>accessToken</i>
+                                                        </td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">header</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">Authentication token.</td>
                                                         <td style="border: 1px solid #ccc; padding: 8px;">No</td>
@@ -202,18 +224,18 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <h2 style="color: #2F4F4F;">Response Codes</h2>
+                                            <h2 style="color: #2F4F4F;">Response codes</h2>
                                             <ul>
-                                                <li><strong>201</strong> - Created</li>
-                                                <li><strong>400</strong> - Bad request</li>
-                                                <li><strong>404</strong> - Not found</li>
-                                                <li><strong>410</strong> - Resource no longer available</li>
-                                                <li><strong>422</strong> - Unprocessable entity</li>
+                                                <li><strong>201</strong> – Created</li>
+                                                <li><strong>400</strong> – Bad request</li>
+                                                <li><strong>404</strong> – Not found</li>
+                                                <li><strong>410</strong> – Resource no longer available</li>
+                                                <li><strong>422</strong> – Unprocessable entity</li>
                                             </ul>
                                             <h2 style="color: #2F4F4F;">Examples</h2>
-                                            <p>Examples of how to create intake records using the POST method are available in Swagger (link).</p>
-                                        </div><![CDATA[
-    ]]></div>
+                                            <p>Examples of intake creation using the POST method are available in Swagger (link).</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
