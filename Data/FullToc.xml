@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc Version="1" conditions="" DescendantCount="20">
+    <TocEntry Title="About me" Link="/Content/About/About.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" BreakType="chapter" StartSection="false" PageNumberReset="continue" PageLayout="/Content/Resources/PageLayouts/Chapters.flpgl" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+    <TocEntry Title="AI automation projects" Link="/Content/AutomationProjects/AP_Overview.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" ComputedFirstTopic="false" DescendantCount="1">
+        <TocEntry Title="Release-note fix automation (AI agent)" Link="/Content/AutomationProjects/AP_AdoReleaseNoteAutomation.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Release notes" Link="/Content/ReleaseNotes/RN_Overview.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" ComputedFirstTopic="false" DescendantCount="4">
+        <TocEntry Title="Order management performance" Link="/Content/ReleaseNotes/RN_OrderPerformance.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="API validation of data types" Link="/Content/ReleaseNotes/RN_ApiValidation.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Link token field" Link="/Content/ReleaseNotes/RN_LinkTokenField.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Fixes" Link="/Content/ReleaseNotes/RN_BugFixes.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Online Help" Link="/Content/OnlineHelp/OH_Overview.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" ComputedFirstTopic="false" DescendantCount="1">
+        <TocEntry Title="Internal retrieval window" Link="/Content/OnlineHelp/OH_InternalRetrieval.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="API documentation" Link="/Content/APIs/API_Overview.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" ComputedFirstTopic="false" DescendantCount="4">
+        <TocEntry Title="Inventory intake API reference" Link="/Content/APIs/API_InventoryIntake.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Inventory intake API release note" Link="/Content/APIs/API_InventoryIntakeReleaseNotes.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Sample entity API reference" Link="/Content/APIs/API_SampleEntity.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Trade requests batch API reference" Link="/Content/APIs/API_TradeRequestsBatch.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Installation guide" Link="/Content/InstallationGuide/IG_Overview.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" ComputedFirstTopic="false" DescendantCount="1">
+        <TocEntry Title="Installing Northstar Regional Module" Link="/Content/InstallationGuide/IG_Installation.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Newsletters" Link="/Content/Newsletters/NL_Overview.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" ComputedFirstTopic="false" DescendantCount="2">
+        <TocEntry Title="Support notes tooling update" Link="/Content/Newsletters/NL_SupportNotesTooling.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Support notes process update" Link="/Content/Newsletters/NL_SupportNotesUpdates.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+</CatapultToc>
