@@ -278,7 +278,11 @@ h2
 	font-weight: bold;
 	font-size: 18.0pt;
 	mc-hyphenate: never;
-	page-break-before: always;
+	color: #2f4f4f;
+}
+
+div.topic-hero h2
+{
 	color: #ffffff;
 }
 
@@ -287,6 +291,7 @@ h3
 	font-weight: bold;
 	font-size: 14.0pt;
 	mc-hyphenate: never;
+	color: #2f4f4f;
 }
 
 h4
@@ -519,6 +524,23 @@ a:link
 a:visited
 {
 	color: #076685;
+}
+
+a.MiniTOC1:link,
+a.MiniTOC1:visited,
+a.MiniTOC1:hover,
+a.MiniTOC1:active,
+a.MiniTOC2:link,
+a.MiniTOC2:visited,
+a.MiniTOC2:hover,
+a.MiniTOC2:active,
+a.MiniTOC3:link,
+a.MiniTOC3:visited,
+a.MiniTOC3:hover,
+a.MiniTOC3:active
+{
+	color: #1f2a2d !important;
+	text-decoration: none;
 }
 
 MadCap|dropDown

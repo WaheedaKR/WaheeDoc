@@ -1,1 +1,1 @@
-define({r:0.5,st:'Stem',n:1,t:[0],m:[],u:['../Content/APIs/API_homePage.htm'],s:['00'],p:[['00',16],['inventory',7],['tip',7]]});
+define({r:0.5,st:'Stem',n:1,t:[0],m:[],u:['../Content/APIs/API_InventoryIntake.htm'],s:['+','respons'],p:[['+',14],['do',2],['milestone',16],['shippingmethodname',14]]});
